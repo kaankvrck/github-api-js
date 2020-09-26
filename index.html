@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaan KIVIRCIK | Github-API</title>
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/514034c92a.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <style>
+        .borderzero {
+            border: 0 none;
+        }
+
+        * {
+            font-family: 'Abel', sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .img-fluid {
+            border-radius: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Github Api projemizin tamamını içeren container-->
+    <div class="container searchContainer">
+        
+        
+        <!-- Verilerine erişmek istediğimiz kullanıcı için kullanıcı adı aldığımız bölge-->
+        <div class="search card card-header">
+            <h3>Github Kullanıcılarını Sorgulayın</h3>
+            <p class="lead">Kullanıcı bilgileri için kullanıcı adını giriniz.</p>
+            <form id="github-form">
+                <input type="text" name="githubname" id="githubname" class="form-control"
+                    placeholder="Github Kullanıcı Adı">
+                <br>
+                <button type="submit" class="btn btn-dark">Bilgileri Getir</button>
+            </form>
+            <br>
+        </div>
+        <br>
+        
+        
+        <!-- İstenilen kullanıcının verilerinin gözüktüğü bölge -->
+        <div id="profile">
+            <div class="card card-header">
+                <h3>Araştırılan Profil</h3>
+            </div>
+            <div class="card card-body mb-3">
+                <!-- <div class="row">
+                    <div class="col-md-4">
+                        <a href="#" target="_blank">
+                            <img src=""
+                                class="img-fluid mb-2">
+                        </a>
+                        <hr>
+                        <div id="fullName"><strong>Kaan KIVIRCIK</strong></div>
+                        <hr>
+                        <div id="bio">Electric and Electronic Engineer</div>
+                    </div>
+                    <div class="col-md-8">
+                        <button class="btn btn-secondary">
+                            Takipçi <span class="badge badge-dark">8</span>
+                        </button>
+                        <button class="btn btn-info">
+                            Takip Edilen <span class="badge badge-dark">8</span>
+                        </button>
+                        <button class="btn btn-danger">
+                            Repo Sayısı <span class="badge badge-dark">8</span>
+                        </button>
+                        <hr>
+                        <li class="list-group">
+                        <li class="list-group-item">
+                            <img src="images/company.png" width="30px" style="margin-right: 10px;"><span id="company">
+                                Project Aquarius</span>
+                        </li>
+                        <li class="list-group-item">
+                            <img src="images/location.png" width="30px" style="margin-right: 10px;"><span id="company">
+                                Izmir</span>
+                        </li>
+                        <li class="list-group-item">
+                            <img src="images/mail.png" width="30px" style="margin-right: 10px;"><span id="company">
+                                kaankvrck@gmail.com</span>
+                        </li>
+                        </li>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <br>
+        
+        
+        <!-- Verileri paylaşılan kullanıcının repolarını yazdırma-->
+        <div class="card">
+            <div class="card-header">
+                <h3>Kullanıcının Repo Dosyaları</h3>
+            </div>
+            <div class="card-body row mb-2" id="repos">
+                <!-- <div class="col-md-6 row mr-2 mb-4">
+                    <div class="col-md-6">
+                        <a href="#" target="_blank" id="repoName">Some-Repos-1</a>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn  btn-secondary">
+                            Yıldız <span class="badge badge-dark" id="repoStar">8</span>
+                        </button>
+                        <button class="btn  btn-info">
+                            Fork <span class="badge badge-dark" id="repoFork">8</span>
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <br>
+        
+        
+        <!--Son Aranan Kullanıcıları Listeleme-->
+        <div class="card " style="margin-bottom: 20px;">
+            <div class="card-header">
+                <h3>Son Aranan Kullanıcılar</h3>
+            </div>
+            <div class="card-body">
+                <div id="lastSearch">
+                    <ul class="list-group" id="last-users">
+                        <!-- <li class="list-group-item">kaankvrck</li> -->
+                    </ul>
+                    <hr>
+                    <button class="btn btn-dark" id="clear-last-users">Aranan Kullanıcıları Temizle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="github.js"></script>
+    <script src="storage.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
